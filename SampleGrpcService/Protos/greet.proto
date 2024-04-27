@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+option csharp_namespace = "SampleGrpcService";
+
+//for using Time DataType
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+//for using nullable
+import "google/protobuf/wrappers.proto";
+
+
+package greet;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string response = 1;  
+}
+
+//Other Types
+
+message Meeting {
+	string subject = 1;
+	google.protobuf.Timestamp time = 2;
+	google.protobuf.Duration duration = 3;
+}
+
+//This is item has list of string
+message ListOfString{
+	repeated string my_string_list = 1;
+}
+
+enum Gender {
+	//option allow_alias = true;//When we have duplicate enum value
+
+	NONE = 0;
+	MALE = 1;
+	FEMAIL = 2;
+}
+
+message MyCustomMesssage{
+	//DataType feildName = number from 1(this is feild number);
+  //Data into protocol buffer are array
+  //1-15 -> 1 byte(Please put more impartant data into 1-15)
+  //16-2047 -> 2 byte
+
+  int32 feild_number1 = 1; //int in c# 
+  sint32 feild_number2 = 2; //good for negetave number
+  uint32 feild_number3 = 3; //just more than 0
+  fixed32  feild_number4 = 4; //int
+
+  int64 feild_number5 = 5; //long in c# 
+  sint64 feild_number6 = 6; //long - good for negetave number
+  uint64 feild_number7 = 7; //long - just more than 0
+  fixed64 feild_number8 = 8; //long
+
+  double feild_number9 = 9;
+  float feild_number10 = 10;
+
+  string feild_number11 = 11;
+  bool feild_number12 = 12;
+  bytes feild_number13 = 13;
+
+  Gender gender = 14;
+
+  google.protobuf.Int32Value nullable_feild_number15 = 15; //nullable
+
+}
+
+message Attributes {
+	map<string,string> values = 1;
+}
