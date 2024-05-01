@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\echo.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Protobuf Include="Protos\echo.proto">
+	    <GrpcServices>Client</GrpcServices>
+	  </Protobuf>
 	  <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
   </ItemGroup>
 

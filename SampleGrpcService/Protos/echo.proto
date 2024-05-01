@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "SampleGrpcService.Protos";
+
+message EchoRequest{
+	string name = 1;
+}
+
+message EchoResponse{
+	string message = 1;
+}
+
+//service -> interface
+service EchoService{
+	rpc SayHello(EchoRequest) returns (EchoResponse);
+}
